@@ -7,9 +7,11 @@ const clickHold = (htmlNode, cb, holdSpeed = 100) => {
       }, holdSpeed);
    };
 
-   const mouseUpCb = (e) => {
+   const mouseUpCb = () => {
       clearInterval(interval);
    };
+
+   htmlNode.addEventListener("click", cb);
 
    htmlNode.addEventListener("mousedown", mouseDownCb);
 
