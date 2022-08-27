@@ -86,6 +86,7 @@ canvas {
 }
 
 .game-control-btns {
+   gap: 10px;
    display: flex;
    margin-top: 1rem;
    justify-content: space-around;
