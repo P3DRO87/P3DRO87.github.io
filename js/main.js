@@ -156,21 +156,27 @@ d.querySelector("#rotate").addEventListener("click", () => {
 });
 
 clickHold(d.querySelector("#move-left"), () => {
-   const { coords } = shape;
-
-   isGameActive && !coords.some((c) => c.x <= 0) && shape.move(-1);
+   moveShape(-1);
 });
 
 clickHold(d.querySelector("#move-right"), () => {
-   const { coords } = shape;
-
-   isGameActive && !coords.some((c) => c.x >= BOX_LIMIT_X - 1) && shape.move(1);
+   moveShape(1);
 });
 
 clickHold(d.querySelector("#boost"), () => {
    isGameActive && !isGameOver && animate();
 });
 ///
+
+const moveShape = (xMove) => {
+   const { coords } = shape;
+
+   if (xMove === -1) {
+      return isGameActive && !coords.some((c) => c.x <= 0) && shape.move(xMove);
+   }
+
+   isGameActive && !coords.some((c) => c.x >= BOX_LIMIT_X - 1) && shape.move(xMove);
+};
 
 document.addEventListener("keyup", ({ key }) => {
    if (!isGameActive) return;
