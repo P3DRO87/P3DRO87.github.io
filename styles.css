@@ -125,7 +125,7 @@ canvas {
 .game-controls button {
    margin: auto;
    margin-top: 5px;
-   font-size: 0.7em;
+   font-size: 1em;
 }
 
 .game-status p {
