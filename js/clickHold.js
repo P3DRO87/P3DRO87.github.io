@@ -22,6 +22,7 @@ const clickHold = (htmlNode, cb, holdSpeed = 100) => {
    htmlNode.addEventListener("touchend", mouseUpCb);
 
    window.addEventListener("touchend", mouseUpCb);
+   window.addEventListener("click", mouseUpCb);
 };
 
 export default clickHold;
