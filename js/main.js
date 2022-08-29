@@ -278,10 +278,12 @@ const deleteLine = (fillRowIdx) => {
    gameLines++;
    $lines.textContent = gameLines;
 
-   if (gameLines % 10 === 0 && gameInterval !== 70) {
+   const LEVEL_UP_TIME = 70;
+
+   if (gameLines % 10 === 0 && gameInterval !== LEVEL_UP_TIME) {
       level++;
       clearInterval(gameInterval);
-      gameTimeInterval -= 70;
+      gameTimeInterval -= LEVEL_UP_TIME;
       gameInterval = setInterval(animate, gameTimeInterval);
       $level.textContent = level;
    }
@@ -292,6 +294,7 @@ const setGameOver = () => {
    shape.y = -1;
    isGameOver = true;
    clearInterval(gameInterval);
+
    main();
 };
 
@@ -300,6 +303,7 @@ const resetGameStatus = () => {
    level = 1;
    $lines.textContent = gameLines;
    $level.textContent = level;
+   gameTimeInterval = 900;
 };
 
 const generateShape = (y = 0) => {
