@@ -152,19 +152,19 @@ $startGameModal.addEventListener("click", () => {
 
 //mobile buttons
 d.querySelector("#rotate").addEventListener("click", () => {
-   !isGamePaused && isGameActive && shape.rotate();
+   isGameActive && shape.rotate();
 });
 
 clickHold(d.querySelector("#move-left"), () => {
-   !isGamePaused && moveShape(-1);
+   moveShape(-1);
 });
 
 clickHold(d.querySelector("#move-right"), () => {
-   !isGamePaused && moveShape(1);
+   moveShape(1);
 });
 
 clickHold(d.querySelector("#boost"), () => {
-   !isGamePaused && isGameActive && !isGameOver && animate();
+   isGameActive && !isGameOver && animate();
 });
 ///
 
@@ -179,13 +179,13 @@ const moveShape = (xMove) => {
 };
 
 document.addEventListener("keyup", ({ key }) => {
-   if (!isGameActive || isGamePaused) return;
+   if (!isGameActive) return;
 
    key === "ArrowUp" && shape.rotate();
 });
 
 document.addEventListener("keydown", ({ key }) => {
-   if (!isGameActive || isGamePaused) return;
+   if (!isGameActive) return;
 
    if (key === "ArrowDown") !isGameOver && animate();
 
@@ -227,6 +227,8 @@ $pauseGameBtn.addEventListener("click", () => {
    gameInterval = setInterval(animate, gameTimeInterval);
    $pauseGameBtn.textContent = "Pause";
 });
+
+$pauseGameBtn.addEventListener("keydown", (e) => e.preventDefault());
 
 $restartGameBtn.addEventListener("click", () => main());
 
