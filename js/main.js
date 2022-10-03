@@ -152,19 +152,19 @@ $startGameModal.addEventListener("click", () => {
 
 //mobile buttons
 d.querySelector("#rotate").addEventListener("click", () => {
-   isGameActive && shape.rotate();
+   !isGamePaused && isGameActive && shape.rotate();
 });
 
 clickHold(d.querySelector("#move-left"), () => {
-   moveShape(-1);
+   !isGamePaused && moveShape(-1);
 });
 
 clickHold(d.querySelector("#move-right"), () => {
-   moveShape(1);
+   !isGamePaused && moveShape(1);
 });
 
 clickHold(d.querySelector("#boost"), () => {
-   isGameActive && !isGameOver && animate();
+   !isGamePaused && isGameActive && !isGameOver && animate();
 });
 ///
 
@@ -179,13 +179,13 @@ const moveShape = (xMove) => {
 };
 
 document.addEventListener("keyup", ({ key }) => {
-   if (!isGameActive) return;
+   if (!isGameActive || isGamePaused) return;
 
    key === "ArrowUp" && shape.rotate();
 });
 
 document.addEventListener("keydown", ({ key }) => {
-   if (!isGameActive) return;
+   if (!isGameActive || isGamePaused) return;
 
    if (key === "ArrowDown") !isGameOver && animate();
 
